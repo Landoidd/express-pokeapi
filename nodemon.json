@@ -1,0 +1,5 @@
+{
+  "watch": ["**/*.ts"],
+  "exec": "node --loader ts-node/esm app.ts",
+  "ext": "ts,js,json"
+}
