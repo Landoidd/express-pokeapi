@@ -38,5 +38,4 @@ export const createGymSchema = z.object({
 
 export const assignBadgeSchema = z.object({
   trainerId: z.string().min(1, { message: "Trainer ID is required" }),
-  gymId: z.string().min(1, { message: "Gym ID is required" }),
 });

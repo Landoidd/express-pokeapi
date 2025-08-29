@@ -165,9 +165,9 @@ router.post(
   authenticateToken,
   async (req: AuthenticatedRequest, res) => {
     try {
-      const { trainerId, gymId } = assignBadgeSchema.parse(req.body);
+      const { trainerId } = assignBadgeSchema.parse(req.body);
 
-      const gym = await Gym.findById(gymId);
+      const gym = await Gym.findById(req.params.id);
       if (!gym) {
         return res.status(404).json({ message: "Gym not found" });
       }
@@ -199,7 +199,7 @@ router.post(
 
       res.json({
         message: `Successfully assigned ${gym.gymBadge} badge to ${targetTrainer.name}`,
-        targetTrainer,
+        badges: targetTrainer.badges,
       });
     } catch (error) {
       console.error("Error assigning badge:", error);
