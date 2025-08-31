@@ -30,7 +30,7 @@ router.get(
 );
 
 router.post(
-  "/pokemon/add",
+  "/pokemon",
   authenticateToken,
   async (req: AuthenticatedRequest, res) => {
     try {
@@ -93,7 +93,7 @@ router.post(
 );
 
 router.put(
-  "/pokemon/update/:pokemonId",
+  "/pokemon/:pokemonId",
   authenticateToken,
   async (req: AuthenticatedRequest, res) => {
     try {
@@ -137,7 +137,7 @@ router.put(
 );
 
 router.delete(
-  "/pokemon/remove/:pokemonId",
+  "/pokemon/:pokemonId",
   authenticateToken,
   async (req: AuthenticatedRequest, res) => {
     try {
