@@ -17,6 +17,7 @@ describe("Auth Routes", () => {
         password: "hashedpassword",
       };
 
+      (bcrypt.hash as jest.Mock).mockResolvedValue("hashedpassword123");
       mockTrainer.create.mockResolvedValue(mockTrainerData as any);
 
       const response = await request(app).post("/api/auth/register").send({
@@ -26,11 +27,14 @@ describe("Auth Routes", () => {
       });
 
       expect(response.status).toBe(201);
-      expect(response.body).toHaveProperty("trainer");
+      expect(response.body).toHaveProperty(
+        "message",
+        "Trainer created successfully"
+      );
       expect(mockTrainer.create).toHaveBeenCalledWith({
         name: "John Doe",
         email: "john@example.com",
-        password: "password123",
+        password: "hashedpassword123",
       });
     });
 
@@ -90,7 +94,7 @@ describe("Auth Routes", () => {
         { id: "trainer123" },
         process.env.JWT_SECRET as string
       );
-    }); 
+    });
 
     it("should return 401 for non-existent user", async () => {
       mockTrainer.findOne.mockResolvedValue(null);
@@ -101,7 +105,7 @@ describe("Auth Routes", () => {
       });
 
       expect(response.status).toBe(401);
-      expect(response.body).toHaveProperty("message", "Invalid credentials");
+      expect(response.body).toHaveProperty("message", "Trainer not found");
     });
 
     it("should return 401 for invalid password", async () => {

@@ -15,7 +15,9 @@ if (!PORT) {
   throw new Error("PORT is not defined");
 }
 
-await connectDB();
+if (process.env.NODE_ENV !== "test") {
+  connectDB().catch(console.error);
+}
 
 app.use(express.json());
 
@@ -23,9 +25,10 @@ app.use("/api/auth", authRoutes);
 app.use("/api/trainer", trainerRoutes);
 app.use("/api/gyms", gymRoutes);
 
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== "test") {
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+}
 
 export default app;
