@@ -157,7 +157,7 @@ router.delete(
           .json({ message: "Pokemon not found in your team" });
       }
 
-      const removedPokemon = trainer.pokemon[pokemonIndex];
+      trainer.pokemon[pokemonIndex];
       trainer.pokemon.splice(pokemonIndex, 1);
       await trainer.save();
 
@@ -167,24 +167,6 @@ router.delete(
       });
     } catch (error) {
       console.error("Error removing Pokemon:", error);
-      res.status(500).json({ message: "Internal server error" });
-    }
-  }
-);
-
-router.get(
-  "/pokemon",
-  authenticateToken,
-  async (req: AuthenticatedRequest, res) => {
-    try {
-      const trainer = await Trainer.findById(req.trainer._id).select("pokemon");
-      if (!trainer) {
-        return res.status(404).json({ message: "Trainer not found" });
-      }
-
-      res.json({ team: trainer.pokemon });
-    } catch (error) {
-      console.error("Error fetching Pokemon team:", error);
       res.status(500).json({ message: "Internal server error" });
     }
   }

@@ -27,7 +27,7 @@ router.get("/", async (req, res) => {
     }
 
     const gyms = await Gym.find(query)
-      .populate("gymMembers", "name email badges")
+      .populate("gymMembers", "name badges pokemon")
       .skip(skip)
       .limit(Number(limit))
       .sort({ gymName: 1 });

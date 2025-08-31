@@ -1,24 +1,6 @@
 import mongoose from "mongoose";
 import { pokemonSchema } from "./Pokemon.js";
-
-const badgeSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  gymName: {
-    type: String,
-    required: true,
-  },
-  dateEarned: {
-    type: Date,
-    default: Date.now,
-  },
-  gymLeader: {
-    type: String,
-    required: true,
-  },
-});
+import { badgeSchema } from "./Badge.js";
 
 const trainerSchema = new mongoose.Schema({
   name: {
