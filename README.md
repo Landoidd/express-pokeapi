@@ -6,7 +6,7 @@
 2. Integration w/PokeAPI to fetch Pokemon
 3. Can perform CRUD operations on Pokemon team
 4. Can perform CRUD gyms and collect badges
-5. Integration tests with auth routes (need to add trainer and gym routes)
+5. Integration tests with auth, trainer, and gym routes
 
 
 ## Setup
