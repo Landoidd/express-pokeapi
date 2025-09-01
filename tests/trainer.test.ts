@@ -75,7 +75,7 @@ describe("Trainer Routes", () => {
     });
   });
 
-  describe("POST /api/trainer/pokemon/add", () => {
+  describe("POST /api/trainer/pokemon/", () => {
     it("should add a pokemon to trainer's team", async () => {
       const mockTrainerData = {
         _id: mockTrainerId,
@@ -93,7 +93,7 @@ describe("Trainer Routes", () => {
       mockPokeAPI.getPokemon.mockResolvedValue(mockPokemonData as any);
 
       const response = await request(app)
-        .post("/api/trainer/pokemon/add")
+        .post("/api/trainer/pokemon/")
         .set("Authorization", `Bearer ${mockToken}`)
         .send({ name: "pikachu" });
 
@@ -116,7 +116,7 @@ describe("Trainer Routes", () => {
       mockTrainer.findById.mockResolvedValue(mockTrainerData as any);
 
       const response = await request(app)
-        .post("/api/trainer/pokemon/add")
+        .post("/api/trainer/pokemon/")
         .set("Authorization", `Bearer ${mockToken}`)
         .send({ name: "pikachu" });
 
@@ -143,7 +143,7 @@ describe("Trainer Routes", () => {
       mockPokeAPI.getPokemon.mockResolvedValue(mockPokemonData as any);
 
       const response = await request(app)
-        .post("/api/trainer/pokemon/add")
+        .post("/api/trainer/pokemon/")
         .set("Authorization", `Bearer ${mockToken}`)
         .send({ name: "pikachu" });
 
@@ -166,7 +166,7 @@ describe("Trainer Routes", () => {
       );
 
       const response = await request(app)
-        .post("/api/trainer/pokemon/add")
+        .post("/api/trainer/pokemon/")
         .set("Authorization", `Bearer ${mockToken}`)
         .send({ name: "invalidpokemon" });
 
@@ -178,7 +178,7 @@ describe("Trainer Routes", () => {
     });
   });
 
-  describe("PUT /api/trainer/pokemon/update/:pokemonId", () => {
+  describe("PUT /api/trainer/pokemon/:pokemonId", () => {
     it("should update pokemon nickname and level", async () => {
       const mockTrainerData = {
         _id: mockTrainerId,
@@ -196,7 +196,7 @@ describe("Trainer Routes", () => {
       mockTrainer.findById.mockResolvedValue(mockTrainerData as any);
 
       const response = await request(app)
-        .put("/api/trainer/pokemon/update/25")
+        .put("/api/trainer/pokemon/25")
         .set("Authorization", `Bearer ${mockToken}`)
         .send({ nickname: "test-nickname", level: 10 });
 
@@ -219,7 +219,7 @@ describe("Trainer Routes", () => {
       mockTrainer.findById.mockResolvedValue(mockTrainerData as any);
 
       const response = await request(app)
-        .put("/api/trainer/pokemon/update/25")
+        .put("/api/trainer/pokemon/25")
         .set("Authorization", `Bearer ${mockToken}`)
         .send({ nickname: "test-nickname" });
 
@@ -247,7 +247,7 @@ describe("Trainer Routes", () => {
       mockTrainer.findById.mockResolvedValue(mockTrainerData as any);
 
       const response = await request(app)
-        .put("/api/trainer/pokemon/update/25")
+        .put("/api/trainer/pokemon/25")
         .set("Authorization", `Bearer ${mockToken}`)
         .send({ nickname: "test-nickname" });
 
@@ -257,7 +257,7 @@ describe("Trainer Routes", () => {
     });
   });
 
-  describe("DELETE /api/trainer/pokemon/remove/:pokemonId", () => {
+  describe("DELETE /api/trainer/pokemon/:pokemonId", () => {
     it("should remove pokemon from team", async () => {
       const mockTrainerData = {
         _id: mockTrainerId,
@@ -273,7 +273,7 @@ describe("Trainer Routes", () => {
       mockTrainer.findById.mockResolvedValue(mockTrainerData as any);
 
       const response = await request(app)
-        .delete("/api/trainer/pokemon/remove/25")
+        .delete("/api/trainer/pokemon/25")
         .set("Authorization", `Bearer ${mockToken}`);
 
       expect(response.status).toBe(200);
@@ -295,7 +295,7 @@ describe("Trainer Routes", () => {
       mockTrainer.findById.mockResolvedValue(mockTrainerData as any);
 
       const response = await request(app)
-        .delete("/api/trainer/pokemon/remove/25")
+        .delete("/api/trainer/pokemon/25")
         .set("Authorization", `Bearer ${mockToken}`);
 
       expect(response.status).toBe(404);
@@ -309,7 +309,7 @@ describe("Trainer Routes", () => {
       mockTrainer.findById.mockResolvedValue(null);
 
       const response = await request(app)
-        .delete("/api/trainer/pokemon/remove/25")
+        .delete("/api/trainer/pokemon/25")
         .set("Authorization", `Bearer ${mockToken}`);
 
       expect(response.status).toBe(404);
